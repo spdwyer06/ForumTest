@@ -1,11 +1,12 @@
 ﻿@model FT_Models.ThreadViewModels.ThreadDetail
 
 @{
-    ViewBag.Title = "MyThreadsDetails";
+    ViewBag.Title = "MyThreadsDelete";
 }
 
-<h2>MyThreadsDetails</h2>
+<h2>MyThreadsDelete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>ThreadDetail</h4>
     <hr />
@@ -59,8 +60,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "MyThreadsIndex")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "MyThreadsEdit", new { id = Model.ThreadID }) |
-    @Html.ActionLink("Back to List", "MyThreadsIndex")
-</p>

@@ -138,6 +138,50 @@ namespace ForumTest.Controllers
             return View(model);
         }
 
+        // GET: /Thread/MyThreadsEdit/{id}
+        public ActionResult MyThreadsEdit(int id)
+        {
+            var service = CreateThreadService();
+            var detail = service.GetThreadByID(id);
+            var model = new ThreadEdit
+            {
+                ThreadID = detail.ThreadID,
+                ThreadTitle = detail.ThreadTitle,
+                ThreadDescription = detail.ThreadDescription
+            };
+
+            //if (service.ValidateUser(id) == true)
+            return View(model);
+
+            //return View("ValidationFailed");
+        }
+
+        // POST: /Thread/MyThreadsEdit/{id}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MyThreadsEdit(int id, ThreadEdit model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            if (model.ThreadID != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+
+            var service = CreateThreadService();
+
+            if (service.UpdateThread(model))
+            {
+                TempData["SaveResult"] = "Your thread was updated.";
+                return RedirectToAction("MyThreadsIndex");
+            }
+
+            ModelState.AddModelError("", "Your thread could not be updated.");
+            return View(model);
+        }
+
         // GET: /Thread/Delete/{id}
         [ActionName("Delete")]
         public ActionResult Delete(int id)
@@ -145,7 +189,7 @@ namespace ForumTest.Controllers
             var service = CreateThreadService();
             var model = service.GetThreadByID(id);
 
-            if(service.ValidateUser(id) == true)
+            if (service.ValidateUser(id) == true)
                 return View(model);
 
             //ModelState.AddModelError("", "You do not have permission to delete this thread.");
@@ -166,6 +210,31 @@ namespace ForumTest.Controllers
             TempData["SaveResult"] = "Your thread was deleted.";
 
             return RedirectToAction("Index");
+        }
+
+        // GET: /Thread/MyThreadsDelete/{id}
+        [ActionName("MyThreadsDelete")]
+        public ActionResult MyThreadsDelete(int id)
+        {
+            var service = CreateThreadService();
+            var model = service.GetThreadByID(id);
+
+            return View(model);
+        }
+
+        // POST: /Thread/MyThreadsDelete/{id}
+        [HttpPost]
+        [ActionName("MyThreadsDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult MyThreadsDeleteThread(int id)
+        {
+            var service = CreateThreadService();
+
+            service.DeleteThread(id);
+
+            TempData["SaveResult"] = "Your thread was deleted.";
+
+            return RedirectToAction("MyThreadsIndex");
         }
 
 

@@ -45,9 +45,9 @@
             @Html.DisplayFor(modelItem => item.NumberOfPost)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ThreadID }) |
+            @Html.ActionLink("Edit", "MyThreadsEdit", new { id=item.ThreadID }) |
             @Html.ActionLink("Details", "MyThreadsDetails", new { id=item.ThreadID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ThreadID })
+            @Html.ActionLink("Delete", "MyThreadsDelete", new { id=item.ThreadID })
         </td>
     </tr>
 }
