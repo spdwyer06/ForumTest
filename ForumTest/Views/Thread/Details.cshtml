@@ -1,0 +1,92 @@
+﻿@model FT_Models.ThreadViewModels.ThreadDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ThreadDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadCreator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadCreator)
+        </dd>
+
+        @*
+                Puts in current signed in user's email as the creator
+            <dd>
+                @Html.DisplayFor(model => User.Identity.Name)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfPost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfPost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Posts)
+        </dt>
+
+        @*<dd>
+            @{Html.RenderAction("ThreadPostIndex", "Post", new { id = Model.ThreadID }); }
+        </dd>*@
+
+        <dd>
+            @Html.ActionLink("View Posts", "ThreadPostIndex", new { threadID = Model.ThreadID })
+        </dd>
+
+        @*@foreach (var item in Model.Posts)
+            {
+                <dd>
+                    @Html.DisplayFor(model => item.PostContent)
+                </dd>
+            }*@
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ThreadID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

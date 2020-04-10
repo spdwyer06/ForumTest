@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FT_Models.PostViewModels.PostListItem>
+
+@{
+    ViewBag.Title = "ThreadPostIndex";
+}
+
+<h2>ThreadPostIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PostID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThreadID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostCreator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfReplies)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ThreadID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostCreator)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostCreated)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumberOfReplies)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+    </td>
+</tr>
+}
+
+</table>

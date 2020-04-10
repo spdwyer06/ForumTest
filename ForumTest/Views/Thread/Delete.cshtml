@@ -1,0 +1,64 @@
+﻿@model FT_Models.ThreadViewModels.ThreadDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ThreadDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfPost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfPost)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
