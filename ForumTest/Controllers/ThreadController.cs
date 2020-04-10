@@ -33,6 +33,16 @@ namespace ForumTest.Controllers
 
             return View(model);
         }
+        //GET: /Thread/MyThreadsIndex
+        public ActionResult MyThreadsIndex()
+        {
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new ThreadService(userID);
+            //var service = new ThreadService();
+            var model = service.GetMyThreads();
+
+            return View(model);
+        }
 
         //GET: /Thread/Create
         [Authorize]
@@ -69,6 +79,16 @@ namespace ForumTest.Controllers
         {
             //var service = CreateThreadService();
             var service = new ThreadService();
+            var model = service.GetThreadByID(id);
+
+            return View(model);
+        }
+
+        // GET: /Thread/MyThreadsDetails/{id}
+        public ActionResult MyThreadsDetails(int id)
+        {
+            var service = CreateThreadService();
+            //var service = new ThreadService();
             var model = service.GetThreadByID(id);
 
             return View(model);

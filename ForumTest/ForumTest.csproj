@@ -256,7 +256,8 @@
     <Content Include="Views\Post\ValidationFailed.cshtml" />
     <Content Include="Views\PostReply\ValidationFailed.cshtml" />
     <Content Include="Views\Post\ThreadPostIndex.cshtml" />
-    <Content Include="Views\Thread\ThreadPostIndex.cshtml" />
+    <Content Include="Views\Thread\MyThreadsIndex.cshtml" />
+    <Content Include="Views\Thread\MyThreadsDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

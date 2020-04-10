@@ -1,0 +1,55 @@
+﻿@model IEnumerable<FT_Models.ThreadViewModels.ThreadListItem>
+
+@{
+    ViewBag.Title = "MyThreadsIndex";
+}
+
+<h2>Threads I've Created</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ThreadID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThreadTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThreadCreator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThreadCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfPost)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThreadID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThreadTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThreadCreator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThreadCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfPost)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ThreadID }) |
+            @Html.ActionLink("Details", "MyThreadsDetails", new { id=item.ThreadID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ThreadID })
+        </td>
+    </tr>
+}
+
+</table>

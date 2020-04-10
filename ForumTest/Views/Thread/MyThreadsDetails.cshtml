@@ -1,0 +1,66 @@
+﻿@model FT_Models.ThreadViewModels.ThreadDetail
+
+@{
+    ViewBag.Title = "MyThreadsDetails";
+}
+
+<h2>MyThreadsDetails</h2>
+
+<div>
+    <h4>ThreadDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadCreator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadCreator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreadCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThreadCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfPost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfPost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ThreadID }) |
+    @Html.ActionLink("Back to List", "MyThreadsIndex")
+</p>
