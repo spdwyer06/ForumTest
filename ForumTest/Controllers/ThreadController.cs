@@ -26,8 +26,6 @@ namespace ForumTest.Controllers
         //GET: /Thread/Index
         public ActionResult Index()
         {
-            //var userID = Guid.Parse(User.Identity.GetUserId());
-            //var service = new ThreadService(userID);
             var service = new ThreadService();
             var model = service.GetThreads();
 
@@ -36,9 +34,7 @@ namespace ForumTest.Controllers
         //GET: /Thread/MyThreadsIndex
         public ActionResult MyThreadsIndex()
         {
-            var userID = Guid.Parse(User.Identity.GetUserId());
-            var service = new ThreadService(userID);
-            //var service = new ThreadService();
+            var service = CreateThreadService();
             var model = service.GetMyThreads();
 
             return View(model);
@@ -88,7 +84,6 @@ namespace ForumTest.Controllers
         public ActionResult MyThreadsDetails(int id)
         {
             var service = CreateThreadService();
-            //var service = new ThreadService();
             var model = service.GetThreadByID(id);
 
             return View(model);
@@ -150,10 +145,7 @@ namespace ForumTest.Controllers
                 ThreadDescription = detail.ThreadDescription
             };
 
-            //if (service.ValidateUser(id) == true)
             return View(model);
-
-            //return View("ValidationFailed");
         }
 
         // POST: /Thread/MyThreadsEdit/{id}
@@ -183,7 +175,6 @@ namespace ForumTest.Controllers
         }
 
         // GET: /Thread/Delete/{id}
-        [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
             var service = CreateThreadService();
@@ -192,14 +183,11 @@ namespace ForumTest.Controllers
             if (service.ValidateUser(id) == true)
                 return View(model);
 
-            //ModelState.AddModelError("", "You do not have permission to delete this thread.");
-            //return View(model);
             return View("ValidationFailed");
         }
 
         // POST: /Thread/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteThread(int id)
         {
@@ -213,7 +201,6 @@ namespace ForumTest.Controllers
         }
 
         // GET: /Thread/MyThreadsDelete/{id}
-        [ActionName("MyThreadsDelete")]
         public ActionResult MyThreadsDelete(int id)
         {
             var service = CreateThreadService();
@@ -223,8 +210,7 @@ namespace ForumTest.Controllers
         }
 
         // POST: /Thread/MyThreadsDelete/{id}
-        [HttpPost]
-        [ActionName("MyThreadsDelete")]
+        [HttpPost, ActionName("MyThreadsDelete")]
         [ValidateAntiForgeryToken]
         public ActionResult MyThreadsDeleteThread(int id)
         {

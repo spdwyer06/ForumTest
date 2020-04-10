@@ -85,7 +85,7 @@ namespace FT_Services
         public bool UpdateThread(ThreadEdit model)
         {
             var entity = _dbContext.Threads
-                .Single(x => x.ThreadID == model.ThreadID); // && x.ThreadCreator == _userID);
+                .Single(x => x.ThreadID == model.ThreadID); 
 
             entity.ThreadTitle = model.ThreadTitle;
             entity.ThreadDescription = model.ThreadDescription;
@@ -96,7 +96,7 @@ namespace FT_Services
         public bool DeleteThread(int threadID)
         {
             var entity = _dbContext.Threads
-                .Single(x => x.ThreadID == threadID); // && x.ThreadCreator == _userID);
+                .Single(x => x.ThreadID == threadID); 
 
             _dbContext.Threads.Remove(entity);
 
