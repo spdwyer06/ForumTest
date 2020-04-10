@@ -20,6 +20,16 @@ namespace ForumTest.Controllers
             return View(model);
         }
 
+        //GET: /Post/AllPostsIndex
+        public ActionResult AllPostsIndex()
+        {
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new PostService(userID);
+            var model = service.GetAllPosts();
+
+            return View(model);
+        }
+
         //GET: /Post/Index
         public ActionResult Index()
         {

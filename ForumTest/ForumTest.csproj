@@ -260,6 +260,7 @@
     <Content Include="Views\Thread\MyThreadsDetails.cshtml" />
     <Content Include="Views\Thread\MyThreadsEdit.cshtml" />
     <Content Include="Views\Thread\MyThreadsDelete.cshtml" />
+    <Content Include="Views\Post\AllPostsIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -35,7 +35,7 @@ namespace FT_Services
             return _dbContext.SaveChanges() == 1;
         }
 
-        public IEnumerable<PostListItem> GetPosts()
+        public IEnumerable<PostListItem> GetAllPosts()
         {
             var query = _dbContext.Posts
                     //.Where(x => x.PostCreator == _userID)
@@ -47,6 +47,38 @@ namespace FT_Services
                         PostCreated = x.PostCreated,
                         Replies = x.Replies
                     });
+
+            return query.ToArray();
+        }
+
+        public IEnumerable<PostListItem> GetPosts()
+        {
+            //var query = from post in posts
+            //            join postReply in replies on post equals postReply.Owner
+            //            select new { PostID = post.PostID, ReplyID = postReply.ReplyID, PostContent = post.PostContent, ReplyContent = postReply.ReplyContent };
+
+            //var query = from c in _dbContext.Posts.Where(item => item.PostCreator == _userID)
+            //            join o in _dbContext.Replies on c.PostCreator equals o.ReplyCreator
+            //            select c;
+
+            var query = _dbContext.Posts
+                    .Where(x => x.PostCreator == _userID)
+                    //.GroupJoin(_dbContext.Replies, x => x.PostID)
+                    .Select(x => new PostListItem
+                    {
+                        PostID = x.PostID,
+                        ThreadID = x.ThreadID,
+                        PostCreator = x.PostCreator,
+                        PostCreated = x.PostCreated,
+                        Replies = x.Replies
+                    });
+
+            //var newQuery = _dbContext.Replies
+            //    .Where(x => x.ReplyCreator == _userID)
+            //    .Select(x => new PostListItem
+            //    {
+
+            //    });
 
             return query.ToArray();
         }

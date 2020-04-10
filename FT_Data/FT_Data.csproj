@@ -67,8 +67,13 @@
     <Compile Include="Migrations\202004080504303_AddedFirstNameToApplicationUser.Designer.cs">
       <DependentUpon>202004080504303_AddedFirstNameToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004101541236_AddedJoiningTable.cs" />
+    <Compile Include="Migrations\202004101541236_AddedJoiningTable.Designer.cs">
+      <DependentUpon>202004101541236_AddedJoiningTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Post.cs" />
+    <Compile Include="PostAndReplyJoin.cs" />
     <Compile Include="PostReply.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Thread.cs" />
@@ -86,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004080504303_AddedFirstNameToApplicationUser.resx">
       <DependentUpon>202004080504303_AddedFirstNameToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004101541236_AddedJoiningTable.resx">
+      <DependentUpon>202004101541236_AddedJoiningTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

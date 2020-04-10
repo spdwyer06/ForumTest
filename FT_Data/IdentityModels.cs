@@ -35,5 +35,6 @@ namespace FT_Data
         public DbSet<Thread> Threads { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostReply> Replies { get; set; }
+        public DbSet<PostAndReplyJoin> PostAndReplyJoins { get; set; }
     }
 }
