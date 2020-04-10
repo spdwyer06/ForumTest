@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PostAndReplyJoinViewModels\PostAndReplyJoinCreate.cs" />
+    <Compile Include="PostAndReplyJoinViewModels\PostAndReplyJoinDetail.cs" />
+    <Compile Include="PostAndReplyJoinViewModels\PostAndReplyJoinEdit.cs" />
+    <Compile Include="PostAndReplyJoinViewModels\PostAndReplyJoinListItem.cs" />
     <Compile Include="PostReplyViewModels\PostReplyCreate.cs" />
     <Compile Include="PostReplyViewModels\PostReplyDetail.cs" />
     <Compile Include="PostReplyViewModels\PostReplyEdit.cs" />
