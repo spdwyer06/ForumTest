@@ -10,7 +10,7 @@ namespace FT_Data
     public class PostAndReplyJoin
     {
         [Key]
-        public int ID { get; set; }
+        public int JoinID { get; set; }
 
         public int PostID { get; set; }
         //public string PostContent { get; set; }

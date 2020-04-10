@@ -9,6 +9,8 @@ namespace FT_Models.PostAndReplyJoinViewModels
 {
     public class PostAndReplyJoinListItem
     {
+        public int JoinID { get; set; }
+
         public int PostID { get; set; }
         public string PostContent { get; set; }
         public DateTimeOffset PostCreated { get; set; }

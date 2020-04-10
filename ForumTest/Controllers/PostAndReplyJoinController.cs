@@ -67,7 +67,7 @@ namespace ForumTest.Controllers
             var detail = service.GetPostAndReplyJoinByID(id);
             var model = new PostAndReplyJoinEdit
             {
-                ID = detail.ID,
+                JoinID = detail.JoinID,
                 PostContent = detail.PostContent,
                 ReplyContent = detail.ReplyContent
             };
@@ -88,7 +88,7 @@ namespace ForumTest.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            if (model.ID != id)
+            if (model.JoinID != id)
             {
                 ModelState.AddModelError("", "ID Mismatch");
                 return View(model);

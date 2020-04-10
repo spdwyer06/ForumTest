@@ -1,0 +1,69 @@
+﻿@model IEnumerable<FT_Models.PostAndReplyJoinViewModels.PostAndReplyJoinListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JoinID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.JoinID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostContent)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostCreated)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ReplyID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ReplyContent)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ReplyCreated)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.JoinID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.JoinID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.JoinID })
+    </td>
+</tr>
+}
+
+</table>

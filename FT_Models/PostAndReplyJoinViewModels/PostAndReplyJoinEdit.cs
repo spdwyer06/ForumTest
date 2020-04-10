@@ -9,7 +9,7 @@ namespace FT_Models.PostAndReplyJoinViewModels
 {
     public class PostAndReplyJoinEdit
     {
-        public int ID { get; set; }
+        public int JoinID { get; set; }
 
         public int PostID { get; set; }
         public string PostContent { get; set; }

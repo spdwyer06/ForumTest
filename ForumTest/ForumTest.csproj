@@ -262,10 +262,10 @@
     <Content Include="Views\Thread\MyThreadsEdit.cshtml" />
     <Content Include="Views\Thread\MyThreadsDelete.cshtml" />
     <Content Include="Views\Post\AllPostsIndex.cshtml" />
+    <Content Include="Views\PostAndReplyJoin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\PostAndReplyJoin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

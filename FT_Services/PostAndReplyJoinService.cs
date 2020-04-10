@@ -38,7 +38,7 @@ namespace FT_Services
         public IEnumerable<PostAndReplyJoinListItem> GetPostAndReplyJoins ()
         {
             var query = _dbContext.PostAndReplyJoins
-                    //.Where(x => x.Post.PostCreator == _userID)
+                    .Where(x => x.Post.PostCreator == _userID)
                     .Select(x => new PostAndReplyJoinListItem
                     {
                         ReplyID = x.ReplyID,
@@ -55,11 +55,11 @@ namespace FT_Services
         public PostAndReplyJoinDetail GetPostAndReplyJoinByID(int id)
         {
             var entity = _dbContext.PostAndReplyJoins
-                .Single(x => x.ID == id); // && x.PostCreator == _userID);
+                .Single(x => x.JoinID == id); // && x.PostCreator == _userID);
 
             return new PostAndReplyJoinDetail
             {
-                ID = entity.ID,
+                JoinID = entity.JoinID,
                 PostID = entity.PostID,
                 PostContent = entity.Post.PostContent,
                 PostCreated = entity.Post.PostCreated,
@@ -72,7 +72,7 @@ namespace FT_Services
         public bool UpdatePostAndReplyJoin(PostAndReplyJoinEdit model)
         {
             var entity = _dbContext.PostAndReplyJoins
-                .Single(x => x.ID == model.ID); // && x.ReplyCreator == _userID);
+                .Single(x => x.JoinID == model.JoinID); // && x.ReplyCreator == _userID);
 
             entity.Post.PostContent = model.PostContent;
             entity.Reply.ReplyContent = model.ReplyContent;
@@ -85,7 +85,7 @@ namespace FT_Services
         public bool DeletePostAndReplyJoin(int id)
         {
             var entity = _dbContext.PostAndReplyJoins
-                .Single(x => x.ID == id); // && (x.ReplyCreator == _userID || x.Post.PostCreator == _userID || x.Post.Thread.ThreadCreator == _userID));
+                .Single(x => x.JoinID == id); // && (x.ReplyCreator == _userID || x.Post.PostCreator == _userID || x.Post.Thread.ThreadCreator == _userID));
 
             _dbContext.PostAndReplyJoins.Remove(entity);
 
@@ -96,7 +96,7 @@ namespace FT_Services
         public bool ValidateUser(int id)
         {
             var entity = _dbContext.PostAndReplyJoins
-                .Single(x => x.ID == id);
+                .Single(x => x.JoinID == id);
 
             if (entity.Reply.ReplyCreator == _userID || entity.Post.PostCreator == _userID || entity.Post.Thread.ThreadCreator == _userID)
                 return true;
