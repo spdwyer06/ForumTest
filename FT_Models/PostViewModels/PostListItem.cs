@@ -14,6 +14,8 @@ namespace FT_Models.PostViewModels
         public int ThreadID { get; set; }
         public virtual Thread Thread { get; set; }
 
+        public string PostContent { get; set; }
+
         public Guid PostCreator { get; set; }
 
         public DateTimeOffset PostCreated { get; set; }

@@ -18,6 +18,9 @@
             @Html.DisplayNameFor(model => model.ThreadID)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.PostContent)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PostCreator)
         </th>
         <th>
@@ -30,28 +33,31 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThreadID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostCreator)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfReplies)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PostID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PostID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PostID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ThreadID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostContent)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostCreator)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostCreated)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumberOfReplies)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+    </td>
+</tr>
 }
 
 </table>

@@ -11,6 +11,9 @@ namespace FT_Models.PostViewModels
     {
         public int PostID { get; set; }
 
+        public int ThreadID { get; set; }
+        public virtual Thread Thread { get; set; }
+
         public Guid PostCreator { get; set; }
 
         public string PostContent { get; set; }

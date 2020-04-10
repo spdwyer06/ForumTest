@@ -19,7 +19,8 @@ namespace ForumTest.Controllers
             //var model = service.GetPostsByThreadID(threadID);
 
             //return View(model);
-            return RedirectToAction("ThreadPostIndex", "Post", new { threadID = threadID });
+            return RedirectToAction("ThreadPostIndex", "Post", new { threadID });
+
         }
 
         //GET: /Thread/Index

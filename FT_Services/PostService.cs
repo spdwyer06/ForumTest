@@ -59,6 +59,7 @@ namespace FT_Services
                  {
                      PostID = x.PostID,
                      ThreadID = x.ThreadID,
+                     PostContent = x.PostContent,
                      PostCreator = x.PostCreator,
                      PostCreated = x.PostCreated,
                      Replies = x.Replies
@@ -75,6 +76,7 @@ namespace FT_Services
             return new PostDetail
             {
                 PostID = entity.PostID,
+                ThreadID = entity.ThreadID,
                 PostCreator = entity.PostCreator,
                 PostContent = entity.PostContent,
                 PostCreated = entity.PostCreated,
