@@ -7,7 +7,7 @@
 <h2>Posts I've Created</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("View My Replies", "MyRepliesIndex")
 </p>
 <table class="table">
     <tr>
@@ -30,28 +30,29 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThreadID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostCreator)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfReplies)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PostID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PostID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PostID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ThreadID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostCreator)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PostCreated)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumberOfReplies)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+    </td>
+</tr>
 }
+
 
 </table>

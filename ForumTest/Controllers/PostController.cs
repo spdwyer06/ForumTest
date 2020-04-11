@@ -11,6 +11,15 @@ namespace ForumTest.Controllers
 {
     public class PostController : Controller
     {
+        public ActionResult MyRepliesIndex()
+        {
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new PostReplyService(userID);
+            service.GetReplies();
+
+            return RedirectToAction("MyRepliesIndex", "PostReply");
+        }
+
         //GET: /Post/ThreadPostIndex
         public ActionResult ThreadPostIndex(int threadID)
         {
@@ -18,6 +27,18 @@ namespace ForumTest.Controllers
             var model = service.GetPostsByThreadID(threadID);
 
             return View(model);
+        }
+
+        public ActionResult ThreadIndex(int postID)
+        {
+            var service = new PostService();
+            var entity = service.GetPostByID(postID);
+            int threadID = entity.ThreadID;
+
+            return RedirectToAction("ThreadPostIndex", "Post", new { threadID = threadID });
+            //var model = service.GetPostsByThreadID(threadID);
+
+            //return View(model);
         }
 
         //GET: /Post/AllPostsIndex
@@ -42,7 +63,7 @@ namespace ForumTest.Controllers
 
         //GET: /Post/Create
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Create(int threadID)
         {
             return View();
         }
@@ -50,7 +71,7 @@ namespace ForumTest.Controllers
         // POST: /Post/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PostCreate model)
+        public ActionResult Create(PostCreate model, int threadID)
         {
             if (!ModelState.IsValid)
             {
@@ -59,11 +80,12 @@ namespace ForumTest.Controllers
 
             var service = CreatePostService();
 
-            if (service.CreatePost(model))
+            if (service.CreatePost(model, threadID))
             {
                 // TempData removes information after it's accessed
                 TempData["SaveResult"] = "Your post was created.";
-                return RedirectToAction("Index");
+                return RedirectToAction("ThreadPostIndex", "Post", new { threadID });
+                //return RedirectToAction("Index");
             }
 
             ModelState.AddModelError("", "Post could not be created.");
@@ -118,7 +140,8 @@ namespace ForumTest.Controllers
             if (service.UpdatePost(model))
             {
                 TempData["SaveResult"] = "Your post was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("ThreadIndex", "Post", new { postID = model.PostID});
+                //return RedirectToAction("Index");
             }
 
             ModelState.AddModelError("", "Your post could not be updated.");

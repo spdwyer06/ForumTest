@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FT_Models.PostReplyViewModels.PostReplyListItem>
+
+@{
+    ViewBag.Title = "MyRepliesIndex";
+}
+
+<h2>Replies I've Created</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyCreator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyCreator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyCreated)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ReplyID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ReplyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReplyID })
+        </td>
+    </tr>
+}
+
+</table>

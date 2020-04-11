@@ -17,6 +17,8 @@
 
         @Html.HiddenFor(model => model.PostID)
 
+        @Html.HiddenFor(model => model.ThreadID)
+
         <div class="form-group">
             @Html.LabelFor(model => model.PostContent, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -34,5 +36,6 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "ThreadIndex", new { postID = Model.PostID })
+    @*@Html.ActionLink("Back to List", "Index")*@
 </div>

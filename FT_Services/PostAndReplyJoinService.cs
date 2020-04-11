@@ -37,19 +37,22 @@ namespace FT_Services
 
         public IEnumerable<PostAndReplyJoinListItem> GetPostAndReplyJoins ()
         {
-            var query = _dbContext.PostAndReplyJoins
-                    .Where(x => x.Post.PostCreator == _userID)
-                    .Select(x => new PostAndReplyJoinListItem
-                    {
-                        ReplyID = x.ReplyID,
-                        PostID = x.PostID,
-                        PostContent = x.Post.PostContent,
-                        PostCreated = x.Post.PostCreated,
-                        ReplyContent = x.Reply.ReplyContent,
-                        ReplyCreated = x.Reply.ReplyCreated
-                    });
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.PostAndReplyJoins
+                        //.Where(x => x.Post.PostID = _userID && x.Reply.ReplyID = _userID)
+                        .Select(x => new PostAndReplyJoinListItem
+                        {
+                            ReplyID = x.ReplyID,
+                            PostID = x.PostID,
+                            PostContent = x.Post.PostContent,
+                            PostCreated = x.Post.PostCreated,
+                            ReplyContent = x.Reply.ReplyContent,
+                            ReplyCreated = x.Reply.ReplyCreated
+                        });
 
-            return query.ToArray();
+                return query.ToArray();
+            }
         }
 
         public PostAndReplyJoinDetail GetPostAndReplyJoinByID(int id)

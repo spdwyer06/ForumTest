@@ -37,6 +37,21 @@ namespace FT_Services
 
         public IEnumerable<PostReplyListItem> GetReplies()
         {
+            var query = _dbContext.Replies
+                    .Where(x => x.ReplyCreator == _userID)
+                    .Select(x => new PostReplyListItem
+                    {
+                        ReplyID = x.ReplyID,
+                        PostID = x.PostID,
+                        ReplyCreator = x.ReplyCreator,
+                        ReplyCreated = x.ReplyCreated
+                    });
+
+            return query.ToArray();
+        }
+
+        public IEnumerable<PostReplyListItem> GetAllReplies()
+        {
                 var query = _dbContext.Replies
                         //.Where(x => x.PostCreator == _userID)
                         .Select(x => new PostReplyListItem

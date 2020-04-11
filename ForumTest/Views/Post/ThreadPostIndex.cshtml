@@ -4,11 +4,11 @@
     ViewBag.Title = "ThreadPostIndex";
 }
 
-<h2>ThreadPostIndex</h2>
+<h2>Posts In This Thread</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@*<p>
+    @Html.ActionLink("Create New", "Create", new { threadID = ThreadID })
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -56,6 +56,9 @@
         @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
         @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+    </td>
+    <td>
+       @Html.ActionLink("Create New", "Create", new { threadID = item.ThreadID })
     </td>
 </tr>
 }

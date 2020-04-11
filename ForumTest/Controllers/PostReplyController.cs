@@ -11,12 +11,21 @@ namespace ForumTest.Controllers
 {
     public class PostReplyController : Controller
     {
+        public ActionResult MyRepliesIndex()
+        {
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new PostReplyService(userID);
+            var model = service.GetReplies();
+
+            return View(model);
+        }
+
         // GET: /PostReply
         public ActionResult Index()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new PostReplyService(userID);
-            var model = service.GetReplies();
+            var model = service.GetAllReplies();
 
             return View(model);
         }

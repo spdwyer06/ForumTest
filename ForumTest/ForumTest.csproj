@@ -263,6 +263,12 @@
     <Content Include="Views\Thread\MyThreadsDelete.cshtml" />
     <Content Include="Views\Post\AllPostsIndex.cshtml" />
     <Content Include="Views\PostAndReplyJoin\Index.cshtml" />
+    <Content Include="Views\PostAndReplyJoin\Create.cshtml" />
+    <Content Include="Views\PostAndReplyJoin\Details.cshtml" />
+    <Content Include="Views\PostAndReplyJoin\Edit.cshtml" />
+    <Content Include="Views\PostAndReplyJoin\Delete.cshtml" />
+    <Content Include="Views\PostReply\MyRepliesIndex.cshtml" />
+    <Content Include="Views\Post\ThreadIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,13 +21,14 @@ namespace FT_Services
             _userID = userID;
         }
 
-        public bool CreatePost(PostCreate model)
+        public bool CreatePost(PostCreate model, int threadID)
         {
             var entity = new Post()
             {
                 PostCreator = _userID,
                 PostContent = model.PostContent,
-                ThreadID = model.ThreadID,
+                ThreadID = threadID,
+                //ThreadID = model.ThreadID,
                 PostCreated = DateTimeOffset.Now
             };
 
@@ -53,17 +54,8 @@ namespace FT_Services
 
         public IEnumerable<PostListItem> GetPosts()
         {
-            //var query = from post in posts
-            //            join postReply in replies on post equals postReply.Owner
-            //            select new { PostID = post.PostID, ReplyID = postReply.ReplyID, PostContent = post.PostContent, ReplyContent = postReply.ReplyContent };
-
-            //var query = from c in _dbContext.Posts.Where(item => item.PostCreator == _userID)
-            //            join o in _dbContext.Replies on c.PostCreator equals o.ReplyCreator
-            //            select c;
-
             var query = _dbContext.Posts
                     .Where(x => x.PostCreator == _userID)
-                    //.GroupJoin(_dbContext.Replies, x => x.PostID)
                     .Select(x => new PostListItem
                     {
                         PostID = x.PostID,
@@ -72,13 +64,6 @@ namespace FT_Services
                         PostCreated = x.PostCreated,
                         Replies = x.Replies
                     });
-
-            //var newQuery = _dbContext.Replies
-            //    .Where(x => x.ReplyCreator == _userID)
-            //    .Select(x => new PostListItem
-            //    {
-
-            //    });
 
             return query.ToArray();
         }
@@ -100,10 +85,27 @@ namespace FT_Services
             return query.ToArray();
         }
 
+        public IEnumerable<PostListItem> GetThreadByPostID(int postID)
+        {
+            var query = _dbContext.Posts
+                .Where(x => x.PostID == postID)
+                 .Select(x => new PostListItem
+                 {
+                     PostID = x.PostID,
+                     ThreadID = x.ThreadID,
+                     PostContent = x.PostContent,
+                     PostCreator = x.PostCreator,
+                     PostCreated = x.PostCreated,
+                     Replies = x.Replies
+                 });
+
+            return query.ToArray();
+        }
+
         public PostDetail GetPostByID(int id)
         {
             var entity = _dbContext.Posts
-                .Single(x => x.PostID == id); // && x.PostCreator == _userID);
+                .Single(x => x.PostID == id); 
 
             return new PostDetail
             {
@@ -119,9 +121,12 @@ namespace FT_Services
         public bool UpdatePost(PostEdit model)
         {
             var entity = _dbContext.Posts
-                .Single(x => x.PostID == model.PostID); // && x.PostCreator == _userID);
+                .Single(x => x.PostID == model.PostID); 
 
             entity.PostContent = model.PostContent;
+            //entity.ThreadID = model.ThreadID;
+            //entity.ThreadID = threadID;
+
             // May add in future
             //entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
@@ -132,7 +137,7 @@ namespace FT_Services
         {
             var entity = _dbContext.Posts
                 // Grabs the Post with the matching given postID & will delete if the user is the post creator OR if the user is the thread creator
-                .Single(x => x.PostID == postID); // && x.PostCreator == _userID || x.Thread.ThreadCreator == _userID);
+                .Single(x => x.PostID == postID); 
 
             _dbContext.Posts.Remove(entity);
 
