@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FT_Models.PostReplyViewModels.PostReplyListItem>
+
+@{
+    ViewBag.Title = "PostRepliesIndex";
+}
+
+<h2>Replies In This Post</h2>
+
+<p>
+    @*@Html.ActionLink("Create New Reply", "Create", new { postID = ViewData["threadID"]) |*@
+    @Html.ActionLink("Create New Reply", "Create") |
+    @Html.ActionLink("Back To Thread", "GoBackToThread")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyCreator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyCreator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyCreated)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ReplyID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ReplyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReplyID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -12,14 +12,15 @@ namespace ForumTest.Controllers
     public class ThreadController : Controller
     {
         //GET: /Thread/ThreadPostIndex
-        public ActionResult ThreadPostIndex(int threadID)
+        public ActionResult GoToPostsForThread(int threadID)
         {
-            var service = new PostService();
-            service.GetPostsByThreadID(threadID);
+            //var service = new PostService();
+            //service.GetPostsByThreadID(threadID);
+
             //var model = service.GetPostsByThreadID(threadID);
 
             //return View(model);
-            return RedirectToAction("ThreadPostIndex", "Post", new { threadID });
+            return RedirectToAction("ThreadPostsIndex", "Post", new { threadID });
 
         }
 

@@ -71,7 +71,8 @@ namespace FT_Services
         public IEnumerable<PostListItem> GetPostsByThreadID(int threadID)
         {
             var query = _dbContext.Posts
-                .Where(x => x.Thread.ThreadID == threadID)
+                //.Where(x => x.Thread.ThreadID == threadID)
+                .Where(x => x.ThreadID == threadID)
                  .Select(x => new PostListItem
                  {
                      PostID = x.PostID,
@@ -85,22 +86,22 @@ namespace FT_Services
             return query.ToArray();
         }
 
-        public IEnumerable<PostListItem> GetThreadByPostID(int postID)
-        {
-            var query = _dbContext.Posts
-                .Where(x => x.PostID == postID)
-                 .Select(x => new PostListItem
-                 {
-                     PostID = x.PostID,
-                     ThreadID = x.ThreadID,
-                     PostContent = x.PostContent,
-                     PostCreator = x.PostCreator,
-                     PostCreated = x.PostCreated,
-                     Replies = x.Replies
-                 });
+        //public IEnumerable<PostListItem> GetThreadByPostID(int postID)
+        //{
+        //    var query = _dbContext.Posts
+        //        .Where(x => x.PostID == postID)
+        //         .Select(x => new PostListItem
+        //         {
+        //             PostID = x.PostID,
+        //             ThreadID = x.ThreadID,
+        //             PostContent = x.PostContent,
+        //             PostCreator = x.PostCreator,
+        //             PostCreated = x.PostCreated,
+        //             Replies = x.Replies
+        //         });
 
-            return query.ToArray();
-        }
+        //    return query.ToArray();
+        //}
 
         public PostDetail GetPostByID(int id)
         {

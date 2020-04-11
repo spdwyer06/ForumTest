@@ -256,7 +256,7 @@
     <Content Include="Views\PostReply\Delete.cshtml" />
     <Content Include="Views\Post\ValidationFailed.cshtml" />
     <Content Include="Views\PostReply\ValidationFailed.cshtml" />
-    <Content Include="Views\Post\ThreadPostIndex.cshtml" />
+    <Content Include="Views\Post\ThreadPostsIndex.cshtml" />
     <Content Include="Views\Thread\MyThreadsIndex.cshtml" />
     <Content Include="Views\Thread\MyThreadsDetails.cshtml" />
     <Content Include="Views\Thread\MyThreadsEdit.cshtml" />
@@ -268,7 +268,7 @@
     <Content Include="Views\PostAndReplyJoin\Edit.cshtml" />
     <Content Include="Views\PostAndReplyJoin\Delete.cshtml" />
     <Content Include="Views\PostReply\MyRepliesIndex.cshtml" />
-    <Content Include="Views\Post\ThreadIndex.cshtml" />
+    <Content Include="Views\PostReply\PostRepliesIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

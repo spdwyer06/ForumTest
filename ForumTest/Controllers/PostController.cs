@@ -11,6 +11,15 @@ namespace ForumTest.Controllers
 {
     public class PostController : Controller
     {
+        //GET: /Thread/ThreadPostIndex
+        public ActionResult GoToRepliesForPost(int postID)
+        {
+            //var service = new PostReplyService();
+            //service.GetRepliesByPostID(postID);
+
+            return RedirectToAction("PostRepliesIndex", "PostReply", new { postID });
+        }
+
         public ActionResult MyRepliesIndex()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
@@ -20,25 +29,25 @@ namespace ForumTest.Controllers
             return RedirectToAction("MyRepliesIndex", "PostReply");
         }
 
-        //GET: /Post/ThreadPostIndex
-        public ActionResult ThreadPostIndex(int threadID)
+        //GET: /Post/ThreadPostsIndex
+        public ActionResult ThreadPostsIndex(int threadID)
         {
             var service = new PostService();
             var model = service.GetPostsByThreadID(threadID);
 
+            ViewData["threadID"] = threadID;
+
             return View(model);
         }
 
+        // Takes the PostEdit model's postID and returns it as a PostDetail model to retrieve the associated ThreadID
         public ActionResult ThreadIndex(int postID)
         {
             var service = new PostService();
             var entity = service.GetPostByID(postID);
             int threadID = entity.ThreadID;
 
-            return RedirectToAction("ThreadPostIndex", "Post", new { threadID = threadID });
-            //var model = service.GetPostsByThreadID(threadID);
-
-            //return View(model);
+            return RedirectToAction("ThreadPostsIndex", "Post", new { threadID = threadID });
         }
 
         //GET: /Post/AllPostsIndex
@@ -65,6 +74,8 @@ namespace ForumTest.Controllers
         [Authorize]
         public ActionResult Create(int threadID)
         {
+            ViewData["threadID"] = threadID;
+
             return View();
         }
 
@@ -84,7 +95,7 @@ namespace ForumTest.Controllers
             {
                 // TempData removes information after it's accessed
                 TempData["SaveResult"] = "Your post was created.";
-                return RedirectToAction("ThreadPostIndex", "Post", new { threadID });
+                return RedirectToAction("ThreadPostsIndex", "Post", new { threadID });
                 //return RedirectToAction("Index");
             }
 
@@ -113,11 +124,10 @@ namespace ForumTest.Controllers
                 PostContent = detail.PostContent,
             };
 
-            //return View(model);
-
             if (service.ValidateUser(id) == true)
                 return View(model);
 
+            ViewData["threadID"] = detail.ThreadID;
             return View("ValidationFailed");
         }
 
@@ -155,11 +165,10 @@ namespace ForumTest.Controllers
             var service = CreatePostService();
             var model = service.GetPostByID(id);
 
-            //return View(model);
-
             if (service.ValidateUser(id) == true)
                 return View(model);
 
+            ViewData["threadID"] = model.ThreadID;
             return View("ValidationFailed");
         }
 
@@ -170,11 +179,13 @@ namespace ForumTest.Controllers
         {
             var service = CreatePostService();
 
+            var entity = service.GetPostByID(id);
+
             service.DeletePost(id);
 
             TempData["SaveResult"] = "Your post was deleted.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ThreadPostsIndex", new { threadID = entity.ThreadID });
         }
 
 

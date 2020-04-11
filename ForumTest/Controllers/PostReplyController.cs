@@ -11,6 +11,23 @@ namespace ForumTest.Controllers
 {
     public class PostReplyController : Controller
     {
+        // GET: /PostReply/PostRepliesIndex
+        public ActionResult PostRepliesIndex(int postID)
+        {
+            var service = new PostReplyService();
+            var model = service.GetRepliesByPostID(postID);
+
+            ViewData["postID"] = postID;
+
+            return View(model);
+        }
+
+        // GET: /PostReply/GoBackToThread
+        public ActionResult GoBackToThread()
+        {
+
+        }
+
         public ActionResult MyRepliesIndex()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());

@@ -6,6 +6,6 @@
 <h2>You do not have the permission to edit this post.</h2>
 
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "ThreadPostsIndex", new { threadID = ViewData["threadID"]})
 </p>
 

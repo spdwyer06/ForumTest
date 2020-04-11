@@ -50,7 +50,7 @@
         @Html.ActionLink("Edit", "Edit", new { id = item.ThreadID }) |
         @Html.ActionLink("Details", "Details", new { id = item.ThreadID }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.ThreadID }) |
-        @Html.ActionLink("View Posts", "ThreadPostIndex", new { threadID = item.ThreadID })
+        @Html.ActionLink("View Posts", "GoToPostsForThread", new { threadID = item.ThreadID })
     </td>
 </tr>
 }

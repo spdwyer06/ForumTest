@@ -16,15 +16,15 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @*@Html.HiddenFor(model => model.ThreadID)*@
+        @Html.HiddenFor(model => model.ThreadID)
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.ThreadID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DisplayFor(model => model.ThreadID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ThreadID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.PostContent, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -43,7 +43,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "ThreadPostsIndex", new { threadID = ViewData["threadID"] })
 </div>
 
 @section Scripts {
