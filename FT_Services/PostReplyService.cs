@@ -21,13 +21,13 @@ namespace FT_Services
             _userID = userID;
         }
 
-        public bool CreatePostReply(PostReplyCreate model)
+        public bool CreatePostReply(PostReplyCreate model, int postID)
         {
             var entity = new PostReply()
             {
                 ReplyCreator = _userID,
                 ReplyContent = model.ReplyContent,
-                PostID = model.PostID,
+                PostID = postID,
                 ReplyCreated = DateTimeOffset.Now
             };
 
@@ -89,6 +89,7 @@ namespace FT_Services
                 return new PostReplyDetail
                 {
                     ReplyID = entity.ReplyID,
+                    PostID = entity.PostID,
                     ReplyCreator = entity.ReplyCreator,
                     ReplyContent = entity.ReplyContent,
                     ReplyCreated = entity.ReplyCreated,

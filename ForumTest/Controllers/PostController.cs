@@ -20,14 +20,14 @@ namespace ForumTest.Controllers
             return RedirectToAction("PostRepliesIndex", "PostReply", new { postID });
         }
 
-        public ActionResult MyRepliesIndex()
-        {
-            var userID = Guid.Parse(User.Identity.GetUserId());
-            var service = new PostReplyService(userID);
-            service.GetReplies();
+        //public ActionResult MyRepliesIndex()
+        //{
+        //    var userID = Guid.Parse(User.Identity.GetUserId());
+        //    var service = new PostReplyService(userID);
+        //    service.GetReplies();
 
-            return RedirectToAction("MyRepliesIndex", "PostReply");
-        }
+        //    return RedirectToAction("MyRepliesIndex", "PostReply");
+        //}
 
         //GET: /Post/ThreadPostsIndex
         public ActionResult ThreadPostsIndex(int threadID)

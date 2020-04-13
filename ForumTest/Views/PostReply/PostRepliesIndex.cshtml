@@ -7,9 +7,8 @@
 <h2>Replies In This Post</h2>
 
 <p>
-    @*@Html.ActionLink("Create New Reply", "Create", new { postID = ViewData["threadID"]) |*@
-    @Html.ActionLink("Create New Reply", "Create") |
-    @Html.ActionLink("Back To Thread", "GoBackToThread")
+    @Html.ActionLink("Create New Reply", "Create", new { postID = ViewData["postID"]}) |
+    @Html.ActionLink("Back To Thread", "GoBackToThread", new { postID = ViewData["postID"]})
 </p>
 <table class="table">
     <tr>

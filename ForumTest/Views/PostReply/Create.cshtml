@@ -15,13 +15,15 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
+        @Html.HiddenFor(model => model.PostID)
+
+        @*<div class="form-group">
             @Html.LabelFor(model => model.PostID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PostID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PostID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ReplyContent, htmlAttributes: new { @class = "control-label col-md-2" })

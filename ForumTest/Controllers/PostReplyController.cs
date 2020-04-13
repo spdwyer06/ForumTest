@@ -11,6 +11,15 @@ namespace ForumTest.Controllers
 {
     public class PostReplyController : Controller
     {
+        public ActionResult RedirectToPostRepliesIndex(int replyID)
+        {
+            var service = new PostReplyService();
+            var entity = service.GetReplyByID(replyID);
+            int postID = entity.PostID;
+
+            return RedirectToAction("PostRepliesIndex", new { postID });
+        }
+
         // GET: /PostReply/PostRepliesIndex
         public ActionResult PostRepliesIndex(int postID)
         {
@@ -22,10 +31,13 @@ namespace ForumTest.Controllers
             return View(model);
         }
 
-        // GET: /PostReply/GoBackToThread
-        public ActionResult GoBackToThread()
+        //GET: /PostReply/GoBackToThread
+        public ActionResult GoBackToThread(int postID)
         {
+            var service = new PostService();
+            var model = service.GetPostByID(postID);
 
+            return RedirectToAction("ThreadPostsIndex", "Post", new { threadID = model.ThreadID });
         }
 
         public ActionResult MyRepliesIndex()
@@ -49,15 +61,17 @@ namespace ForumTest.Controllers
 
         //GET: /PostReply/Create
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Create(int postID)
         {
+            ViewData["postID"] = postID;
+
             return View();
         }
 
         // POST: /PostReply/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PostReplyCreate model)
+        public ActionResult Create(PostReplyCreate model, int postID)
         {
             if (!ModelState.IsValid)
             {
@@ -66,11 +80,11 @@ namespace ForumTest.Controllers
 
             var service = CreateReplyService();
 
-            if (service.CreatePostReply(model))
+            if (service.CreatePostReply(model, postID))
             {
                 // TempData removes information after it's accessed
                 TempData["SaveResult"] = "Your reply was created.";
-                return RedirectToAction("Index");
+                return RedirectToAction("PostRepliesIndex", new { postID = postID});
             }
 
             ModelState.AddModelError("", "Reply could not be created.");
@@ -97,6 +111,8 @@ namespace ForumTest.Controllers
                 ReplyContent = detail.ReplyContent,
             };
 
+            ViewData["postID"] = detail.PostID;
+            
             if (service.ValidateUser(id) == true)
                 return View(model);
 
@@ -123,7 +139,7 @@ namespace ForumTest.Controllers
             if (service.UpdateReply(model))
             {
                 TempData["SaveResult"] = "Your reply was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("RedirectToPostRepliesIndex", new { replyID = model.ReplyID });
             }
 
             ModelState.AddModelError("", "Your reply could not be updated.");
@@ -140,6 +156,7 @@ namespace ForumTest.Controllers
             if (service.ValidateUser(id) == true)
                 return View(model);
 
+            ViewData["postID"] = model.PostID;
             return View("ValidationFailed");
         }
 
@@ -149,12 +166,13 @@ namespace ForumTest.Controllers
         public ActionResult DeleteReply(int id)
         {
             var service = CreateReplyService();
+            var entity = service.GetReplyByID(id);
 
             service.DeleteReply(id);
 
             TempData["SaveResult"] = "Your reply was deleted.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("PostRepliesIndex", new { postID = entity.PostID });
         }
 
 
